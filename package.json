@@ -16,6 +16,7 @@
     "umi-plugin-react": "^1.7.2"
   },
   "dependencies": {
-    "@antv/g2": "^3.5.2"
+    "@antv/g2": "^3.5.2",
+    "mockjs": "^1.0.1-beta3"
   }
 }

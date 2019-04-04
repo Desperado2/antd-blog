@@ -4,12 +4,21 @@ import InfoCard from '../page/Dashboard/InfoCard';
 import LatestArticles from '../page/Dashboard/LatestArticles';
 import TagCard from '../page/Dashboard/TagCard';
 import ContentList from '../page/Dashboard/ContentList';
+import BackUp from '../components/BackUp';
 
 const { Header, Footer, Sider, Content } = Layout;
 
-const SubMenu = Menu.SubMenu
 
 class BasicLayout extends Component {
+
+    handleTagFilter(tag) {
+        this.child.filterArticles(tag, 'tags')
+    }
+
+    onRef = (ref) => {
+        this.child = ref;
+    }
+
     render() {
         return (
             <Layout>
@@ -43,16 +52,17 @@ class BasicLayout extends Component {
                     </Sider>
                     <Layout style={{ marginLeft: 256 }}>
                         <Content style={{ margin: '24px 16px 0' }}>
-                            <ContentList></ContentList>
+                            <ContentList onRef={this.onRef}></ContentList>
                         </Content>
 
                     </Layout>
                     <Sider width={310} style={{ minHeight: '100vh', background: '#0a000000', textAlign: "center" }}>
                         <LatestArticles></LatestArticles>
-                        <TagCard></TagCard>
+                        <TagCard onTagFilter={this.handleTagFilter.bind(this)}></TagCard>
                     </Sider>
                 </Layout>
                 <Footer style={{ textAlign: 'center' }}>Ant Design 2018 Created by Ant UED</Footer>
+                <BackUp></BackUp>
             </Layout>
         );
     }
